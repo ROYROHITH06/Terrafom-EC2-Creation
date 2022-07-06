@@ -20,7 +20,7 @@ variable "key_name" {
  }
 
 variable "volume_size" {
-  default = "100"
+  default = "30"
 }
 
 #variable "vpc_cidr" {
