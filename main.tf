@@ -65,7 +65,7 @@ resource "aws_instance" "my_instance" {
   ami            = var.ami
   instance_type  = var.instance_type
   key_name       = var.key_name
-  vpc_security_group_ids = ["sg-0135b7a11cc4f47ac"]
+  vpc_security_group_ids = ["sg-02e8e738782c11c3c"]
   subnet_id      = aws_subnet.public_ap_south_1c.id
   associate_public_ip_address = true
   availability_zone = data.aws_availability_zones.all.names[0]
