@@ -118,7 +118,7 @@ resource "aws_instance" "my_instance" {
                    EOF
 
   tags  = {
-   Name  = "AG-POC-DMA-0${count.index + 1}"
+   Name  = "EC2-TERRAFORM-JENKINS"
   }
  }
 
