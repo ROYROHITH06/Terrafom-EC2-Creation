@@ -21,7 +21,7 @@ data "aws_availability_zones" "all" {}
 
 #Create Public subnet on the first available zone
 
-resource "aws_subnet" "public_ap_south_1c" {
+resource "aws_subnet" "public_us_east_1" {
   vpc_id            = "vpc-00cc4a2a6875a2349"
   cidr_block        = var.subnet02_cidr
   availability_zone = data.aws_availability_zones.all.names[0]
@@ -66,17 +66,14 @@ resource "aws_instance" "my_instance" {
   instance_type  = var.instance_type
   key_name       = var.key_name
   vpc_security_group_ids = ["sg-02e8e738782c11c3c"]
-  subnet_id      = aws_subnet.public_ap_south_1c.id
+  subnet_id      = aws_subnet.public_us_east_1.id
   associate_public_ip_address = true
   availability_zone = data.aws_availability_zones.all.names[0]
-#  user_data      = "${file("install_maven.sh")}"
-
   root_block_device {
         delete_on_termination = "true"
         volume_type = "gp2"
         volume_size = "${var.volume_size}"
     }
-
   user_data      = <<-EOF
                    #!/bin/bash
                    sudo apt update
