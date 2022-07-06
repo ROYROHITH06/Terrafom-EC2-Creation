@@ -57,7 +57,7 @@ resource "aws_subnet" "public_ap_south_1c" {
 # Associate the Routetable to the Subnet
 resource "aws_route_table_association" "my_vpc_ap_east_1a_public" {
  subnet_id  = aws_subnet.public_ap_south_1c.id
- route_table_id = "rtb-09a5d3c7ecc6e3e26"
+ route_table_id = "rtb-00a4d1a8a4666325d"
 }
 
 resource "aws_instance" "my_instance" {
