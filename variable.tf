@@ -3,7 +3,7 @@ variable "ami" {
  }
 
 variable "instance_type" {
-  default = "t3.micro"
+  default = "t2.small"
  }
 
 variable "aws_region" {
@@ -20,7 +20,7 @@ variable "key_name" {
  }
 
 variable "volume_size" {
-  default = "30"
+  default = "50"
 }
 
 #variable "vpc_cidr" {
