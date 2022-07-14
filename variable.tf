@@ -11,7 +11,7 @@ variable "aws_region" {
  }
 
 variable "subnet02_cidr" {
- default = "10.180.3.0/24"
+ default = "10.180.10.0/24"
 }
 
 variable "key_name" {
