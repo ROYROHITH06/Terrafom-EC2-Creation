@@ -23,7 +23,3 @@ variable "volume_size" {
   default = "50"
 }
 
-#variable "vpc_cidr" {
-#  default = "10.180.0.0/16"
-# }
-
