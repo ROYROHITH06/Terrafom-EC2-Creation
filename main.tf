@@ -1,21 +1,18 @@
 provider "aws" {
   region = "us-east-1"
-#  profile = "default"
  }
 
 #Get a list of available zone in current region
-
 data "aws_availability_zones" "all" {}
 
 #Create Public subnet on the first available zone
-
 resource "aws_subnet" "public_us_east_1" {
   vpc_id            = "vpc-00cc4a2a6875a2349"
   cidr_block        = var.subnet02_cidr
   availability_zone = data.aws_availability_zones.all.names[0]
 
  tags  = {
-  name = "MY-AG-POC-PUBLIC-SUBNET02"
+  name = "LSCP-PUBLIC-SUBNET-DEV-01"
  }
 }
 
@@ -51,7 +48,6 @@ resource "aws_instance" "my_instance" {
                    export M2_HOME=/opt/maven
                    export MAVEN_HOME=/opt/maven
                    sudo apt update
-                   sudo apt -y install openjdk-8-jdk
                    sudo apt -y install openjdk-11-jdk
                    wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
                    sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
@@ -80,7 +76,7 @@ resource "aws_instance" "my_instance" {
                    EOF
 
   tags  = {
-   Name  = "EC2-TERRAFORM-JENKINS"
+   Name  = "ENV-TERRAFORM-JENKINS"
   }
  }
 
