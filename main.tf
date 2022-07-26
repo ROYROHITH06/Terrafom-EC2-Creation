@@ -36,44 +36,7 @@ resource "aws_instance" "my_instance" {
         volume_type = "gp2"
         volume_size = "${var.volume_size}"
     }
-  user_data      = <<-EOF
-                   #!/bin/bash
-                   sudo apt update
-                   sudo apt -y install maven
-                   sudo apt -y install default-jdk
-                   wget https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz -P /tmp
-                   sudo tar xf /tmp/apache-maven-*.tar.gz -C /opt
-                   sudo ln -s /opt/apache-maven-3.8.6 /opt/maven
-                   export JAVA_HOME=/usr/lib/jvm/default-java
-                   export M2_HOME=/opt/maven
-                   export MAVEN_HOME=/opt/maven
-                   sudo apt update
-                   sudo apt -y install openjdk-11-jdk
-                   wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
-                   sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
-                   sudo apt-get -y update
-                   sudo apt -y install jenkins
-                   sudo ufw allow 8080
-                   sudo apt-get -y update
-                   curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-                   curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
-                   echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
-                   sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-		   curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.23.6/bin/linux/amd64/kubectl
-                   chmod +x ./kubectl
-                   sudo mv ./kubectl /usr/local/bin/kubectl
-                   sudo apt-get -y update
-                   sudo apt -y install awscli
-                   sudo apt-get -y update
-                   sudo apt-get -y install docker.io
-		   sudo apt -y install docker-compose
-                   sudo systemctl enable --now docker
-		   sudo chmod 666 /var/run/docker.sock
-                   sudo apt-get update
-                   curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
-                   sudo mv /tmp/eksctl /usr/local/bin
-                   eksctl version				   
-                   EOF
+
 
   tags  = {
    Name  = "ENV-TERRAFORM-JENKINS"
